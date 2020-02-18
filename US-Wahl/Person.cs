@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,15 @@ namespace US_Wahl
     class Person
     {
         public int ID { get; set; }
-        public string Name { get; set; }
+        public string Vorname { get; set; }
         public string Nachname { get; set; }
         public  Geschlecht  geschlecht { get; set; }
         public Beeinflußbarkeit  beeinflußbarkeit { get; set; }
         public Schicht schicht { get; set; }
+        public PolitischeHeimat politischeHeimat { get; set; }
+
+        //Random zf = new Random();
+        
+        
     }
 }

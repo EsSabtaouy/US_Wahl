@@ -9,25 +9,25 @@ namespace US_Wahl
 {
     class Wahlvolk
     {
+        string[] Nachnamearray = File.ReadAllLines("nachnamen");
+        string[] JungVornamearray = File.ReadAllLines("nachnamen");
+        string[] MädchenVornamearray = File.ReadAllLines("nachnamen");
 
-        List<Person> people = new List<Person>();
 
-
-        public Wahlvolk()
+        public List<Person> people()
         {
+            List<Person> people = new List<Person>();
             Random zf = new Random();
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i <= 1000; i++)
             {
-                people.Add(new Person() {  Name=zf.Next()});
+                
+                people.Add(new Person() { Nachname = Nachnamearray[zf.Next(1001)],Vorname = JungVornamearray[zf.Next(1001)], geschlecht = (Geschlecht)zf.Next(2),
+                beeinflußbarkeit = (Beeinflußbarkeit)zf.Next(3), politischeHeimat = (PolitischeHeimat)zf.Next(2), schicht = (Schicht)zf.Next(4)
+            });
             }
+           
+            return people;
         }
-
-        public void addPerson()
-        {
-            for (int i = 0; i < 1000; i++)
-            {
-                people.Add()
-            }
-        }
+        
     }
 }
