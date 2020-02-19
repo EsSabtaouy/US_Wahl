@@ -10,13 +10,27 @@ namespace US_Wahl
 {
     class Wahlvolk
     {
-        string[] Nachnamearray = File.ReadAllLines("nachnamen-UTF8.txt");
-        string[] JungVornamearray = File.ReadAllLines("jungennamen.txt");
-        string[] MädchenVornamearray = File.ReadAllLines("maedchennamen.txt");
-        int count = 0;
 
+        public static void abfrage(List<Person> inputListe)//Methode zur Linqabfrage
+        {
+            string stichwort;
+            
+            List<Person> ergebnis = new List<Person>();//Liste für die gefundenen Ergebnisse(temporär)
+            Console.WriteLine("Gebe ein Suchstichwort ein:");//Eingabe des Stichworts (muss ggf für die einzelnen Attribute definiert werden)
+            stichwort = Console.ReadLine();
+            var abfrage = from p in inputListe where p.Vorname.Contains(stichwort) select p; //Linq-abfrage
+            ergebnis = abfrage.ToList();
+            foreach (Person item in ergebnis)//Ausgabe des gefundenen
+	        {
+                Console.WriteLine($"PersonenID: {item.ID}; Name: {item.Vorname}; Nachname: {item.Nachname};\n"+
+                                    "Geschlecht: {item.geschlecht}; Schicht: {item.schicht}");
+                Console.WriteLine();
+	        }
+            
 
-        public List<Person> people(int menge)
+        }
+
+        public static List<Person> people(int menge)
         {
             List<Person> people = new List<Person>();
             Random zf = new Random();
@@ -31,7 +45,6 @@ namespace US_Wahl
             return people;
         }
         public static void NamenInDateiSchreiben(List<Person> inputListe) {
-
             
             FileStream fs = File.Open("WählerListe.txt",FileMode.Create,FileAccess.ReadWrite,FileShare.None);
             

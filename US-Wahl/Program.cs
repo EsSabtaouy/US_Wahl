@@ -11,10 +11,11 @@ namespace US_Wahl
     {
         static void Main(string[] args)
         {
-            Wahlvolk wahlvolk = new Wahlvolk();
-            List<Person> list = wahlvolk.people(2);
+           
+            List<Person> list = Wahlvolk.people(1000);
             Wahlvolk.NamenInDateiSchreiben(list);
-
+            Wahlvolk.abfrage(list);
+            Console.ReadLine();
 
             //foreach (var item in list)
             //{
