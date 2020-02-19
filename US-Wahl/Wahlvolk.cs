@@ -13,13 +13,23 @@ namespace US_Wahl
 
         public static void abfrage(List<Person> inputListe)//Methode zur Linqabfrage
         {
-            string stichwort;
+            int stichwort;
+            string stichwortS;
             
             List<Person> ergebnis = new List<Person>();//Liste für die gefundenen Ergebnisse(temporär)
             Console.WriteLine("Gebe ein Suchstichwort ein:");//Eingabe des Stichworts (muss ggf für die einzelnen Attribute definiert werden)
-            stichwort = Console.ReadLine();
-            var abfrage = from p in inputListe where p.Vorname.Contains(stichwort) select p; //Linq-abfrage
-            ergebnis = abfrage.ToList();
+            stichwortS = Console.ReadLine();              
+
+            try{
+            stichwort = Convert.ToInt32(stichwortS);
+            var abfrage2= from p in inputListe where p.ID.Equals(stichwort) select p;
+            ergebnis=abfrage2.ToList();
+            }
+            catch{
+            var abfrage = from p in inputListe where p.Vorname.Contains(stichwortS)||p.Nachname.Contains(stichwortS) select p; //Linq-abfrage  
+            ergebnis = abfrage.ToList();                   
+            }
+
             foreach (Person item in ergebnis)//Ausgabe des gefundenen
 	        {
                 Console.WriteLine($"PersonenID: {item.ID}; Name: {item.Vorname}; Nachname: {item.Nachname};\n"+

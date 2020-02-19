@@ -10,9 +10,8 @@ namespace US_Wahl
     class Program
     {
         static void Main(string[] args)
-        {
-           
-            List<Person> list = Wahlvolk.people(1000);
+        {           
+            List<Person> list = Wahlvolk.people(10);
             Wahlvolk.NamenInDateiSchreiben(list);
             Wahlvolk.abfrage(list);
             Console.ReadLine();
