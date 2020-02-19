@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace US_Wahl
 {
@@ -20,9 +21,41 @@ namespace US_Wahl
         public Beeinflußbarkeit  beeinflußbarkeit { get; set; }
         public Schicht schicht { get; set; }
         public PolitischeHeimat politischeHeimat { get; set; }
+        string[] Nachnamearray = File.ReadAllLines("nachnamen.txt");
+        string[] JungVornamearray = File.ReadAllLines("jungennamen.txt");
+        string[] MädchenVornamearray = File.ReadAllLines("maedchennamen.txt");
+       
+
+        public Person() {
+
+            Random zf = new Random();
+            geschlecht = (Geschlecht)(zf.Next(2));
+            if (geschlecht ==  0){
+                Nachname = Nachnamearray[zf.Next(1000)];
+                Vorname = MädchenVornamearray[zf.Next(MädchenVornamearray.Length)];
+                beeinflußbarkeit = (Beeinflußbarkeit)zf.Next(3);
+                politischeHeimat = (PolitischeHeimat)zf.Next(2);
+                schicht = (Schicht)zf.Next(4);
+
+            }
+            else
+            {
+                Nachname = Nachnamearray[zf.Next(1000)];
+                Vorname = JungVornamearray[zf.Next(JungVornamearray.Length)];
+                beeinflußbarkeit = (Beeinflußbarkeit)zf.Next(3);
+                politischeHeimat = (PolitischeHeimat)zf.Next(2);
+                schicht = (Schicht)zf.Next(4);
+
+            }
+
+          
+
+
+        }
+
 
         //Random zf = new Random();
-        
-        
+
+
     }
 }
