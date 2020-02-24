@@ -21,19 +21,23 @@ namespace US_Wahl
             stichwortS = Console.ReadLine();              
 
             try{
-            stichwort = Convert.ToInt32(stichwortS);
+                if(stichwortS.Length==5)
+                {
+                    stichwort = Convert.ToInt32(stichwortS);
             var abfrage2= from p in inputListe where p.ID.Equals(stichwort) select p;
             ergebnis=abfrage2.ToList();
+                }
+
             }
             catch{
-            var abfrage = from p in inputListe where p.Vorname.Contains(stichwortS)||p.Nachname.Contains(stichwortS) select p; //Linq-abfrage  
+            var abfrage = from p in inputListe where p.Vorname.Contains(stichwortS)||p.Nachname.Contains(stichwortS) || p.geschlecht.Equals(stichwortS) || p.politischeHeimat.Equals(stichwortS) select p; //Linq-abfrage  
             ergebnis = abfrage.ToList();                   
             }
 
             foreach (Person item in ergebnis)//Ausgabe des gefundenen
 	        {
                 Console.WriteLine($"PersonenID: {item.ID}; Name: {item.Vorname}; Nachname: {item.Nachname};\n"+
-                                    "Geschlecht: {item.geschlecht}; Schicht: {item.schicht}");
+                                   $"Geschlecht: {item.geschlecht.ToString()}; Schicht: {item.schicht.ToString()}");
                 Console.WriteLine();
 	        }
             

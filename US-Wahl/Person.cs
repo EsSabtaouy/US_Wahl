@@ -36,6 +36,7 @@ namespace US_Wahl
                 beeinflußbarkeit = (Beeinflußbarkeit)zf.Next(3);
                 politischeHeimat = (PolitischeHeimat)zf.Next(2);
                 schicht = (Schicht)zf.Next(4);
+                ID = zf.Next(10000,50000);
 
             }
             else
@@ -45,6 +46,7 @@ namespace US_Wahl
                 beeinflußbarkeit = (Beeinflußbarkeit)zf.Next(3);
                 politischeHeimat = (PolitischeHeimat)zf.Next(2);
                 schicht = (Schicht)zf.Next(4);
+                ID = zf.Next(50000,99999);
 
             }
 
